@@ -18,12 +18,6 @@ The goal of this project is not only to practice building CRUD-based contact man
 
 ## Flowchart Diagram
 
-- Create new contacts
-
-![Create Contact](docs/images/create-flow.png)
-
-- Contacts search
-
-![Search Contacts](docs/images/search-flow.png)
+![System's Flowchart](docs/images/flow_system.png)
 
 ## How to Run It
