@@ -18,6 +18,6 @@ The goal of this project is not only to practice building CRUD-based contact man
 
 ## Flowchart Diagram
 
-![System's Flowchart](docs/images/flow_system.png)
+![System's Flowchart](docs/images/system_flow.png)
 
 ## How to Run It
