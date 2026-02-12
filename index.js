@@ -2,8 +2,10 @@
 const logContact = (contacts) => {
   if (!Array.isArray(contacts)) {
     console.log("Provide an array of objects data structure");
+    return;
   } else if (contacts.length === 0) {
     console.log("Your contact is empty");
+    return;
   }
   contacts.forEach((contact) => {
     console.log(
@@ -20,8 +22,10 @@ const logContact = (contacts) => {
 const logContact2 = (contacts) => {
   if (!Array.isArray(contacts)) {
     console.log("Provide an array of objects data structure");
+    return;
   } else if (contacts.length === 0) {
     console.log("Your contact is empty");
+    return;
   }
   contacts.forEach((contact) => {
     console.log(
