@@ -1,4 +1,5 @@
 "use strict";
+
 const logContact = (contacts) => {
   if (!Array.isArray(contacts)) {
     console.log("Provide an array of objects data structure");
@@ -10,19 +11,16 @@ const logContact = (contacts) => {
   contacts.forEach((contact) => {
     console.log(
       contact.firstName +
-      " " +
-      contact.lastName +
-      ", " +
-      contact.phoneNumber +
-      ", " +
-      contact.email,
+        " " +
+        contact.lastName +
+        ", " +
+        contact.phoneNumber +
+        ", " +
+        contact.email,
     );
   });
 };
 
-const listContact = (contacts) => {
-  logContact(contacts);
-};
 const addContact = (contacts, updatedContact) => {
   return [...contacts, updatedContact];
 };
@@ -32,36 +30,16 @@ const updateContact = (contacts, updatedContact) => {
     if (contact.id === updatedContact.id) {
       return {
         ...contact,
-        ...updatedContact
+        ...updatedContact,
       };
     } else {
       return contact;
     }
   });
-}
+};
 
-let contacts = [
-  {
-    id: 1,
-    firstName: "Steve",
-    lastName: "Jobs",
-    jobTitle: "CEO",
-    email: "stevejobs@apple.com",
-    phoneNumber: "+1278128318",
-    location: "San Francisco",
-  },
-  {
-    id: 2,
-    firstName: "Jude",
-    lastName: "Bellingham",
-    jobTitle: "Midfielder",
-    email: "jude.bellingham@realmadrid.com",
-    phoneNumber: "+1278128319",
-    location: "Madrid",
-  },
-];
 console.log(contacts);
-listContact(contacts);
+logContacts(contacts);
 contacts = addContact(contacts, {
   id: 3,
   firstName: "Barry",
@@ -71,10 +49,13 @@ contacts = addContact(contacts, {
   phoneNumber: "+1278128319",
   location: "Gotham",
 });
+
 console.log(contacts);
 listContact(contacts);
+
 contacts = updateContact(contacts, {
   id: 2,
-  phoneNumber: "+34-999-888-777"
+  phoneNumber: "+34-999-888-777",
 });
+
 listContact(contacts);
