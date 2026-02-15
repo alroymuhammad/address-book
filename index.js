@@ -1,6 +1,6 @@
 "use strict";
 
-const logContact = (contacts) => {
+const logContacts = (contacts) => {
   if (!Array.isArray(contacts)) {
     console.log("Provide an array of objects data structure");
     return;
