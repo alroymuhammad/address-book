@@ -10,12 +10,12 @@ const logContact = (contacts) => {
   contacts.forEach((contact) => {
     console.log(
       contact.firstName +
-        " " +
-        contact.lastName +
-        ", " +
-        contact.phoneNumber +
-        ", " +
-        contact.email,
+      " " +
+      contact.lastName +
+      ", " +
+      contact.phoneNumber +
+      ", " +
+      contact.email,
     );
   });
 };
@@ -26,6 +26,19 @@ const listContact = (contacts) => {
 const addContact = (contacts, updatedContact) => {
   return [...contacts, updatedContact];
 };
+
+const updateContact = (contacts, updatedContact) => {
+  return contacts.map((contact) => {
+    if (contact.id === updatedContact.id) {
+      return {
+        ...contact,
+        ...updatedContact
+      };
+    } else {
+      return contact;
+    }
+  });
+}
 
 let contacts = [
   {
@@ -59,4 +72,9 @@ contacts = addContact(contacts, {
   location: "Gotham",
 });
 console.log(contacts);
+listContact(contacts);
+contacts = updateContact(contacts, {
+  id: 2,
+  phoneNumber: "+34-999-888-777"
+});
 listContact(contacts);
