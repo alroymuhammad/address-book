@@ -1,5 +1,24 @@
 "use strict";
 
+let contacts = [{
+  id: 1,
+  firstName: "Steve",
+  lastName: "Jobs",
+  jobTitle: "CEO",
+  email: "stevejobs@apple.com",
+  phoneNumber: "+1278128318",
+  location: "San Francisco",
+},
+{
+  id: 2,
+  firstName: "Jude",
+  lastName: "Bellingham",
+  jobTitle: "Midfielder",
+  email: "jude.bellingham@realmadrid.com",
+  phoneNumber: "+1278128319",
+  location: "Madrid",
+},]
+
 const logContacts = (contacts) => {
   if (!Array.isArray(contacts)) {
     console.log("Provide an array of objects data structure");
@@ -11,12 +30,12 @@ const logContacts = (contacts) => {
   contacts.forEach((contact) => {
     console.log(
       contact.firstName +
-        " " +
-        contact.lastName +
-        ", " +
-        contact.phoneNumber +
-        ", " +
-        contact.email,
+      " " +
+      contact.lastName +
+      ", " +
+      contact.phoneNumber +
+      ", " +
+      contact.email,
     );
   });
 };
@@ -38,6 +57,16 @@ const updateContact = (contacts, updatedContact) => {
   });
 };
 
+const deleteContact = (contacts, id) => {
+  return contacts.filter(contact => contact.id !== id);
+};
+
+const searchContacts = (contacts, query) => {
+  return contacts.filter(contact =>
+    contact.firstName.toLowerCase().includes(query.toLowerCase()) ||
+    contact.lastName.toLowerCase().includes(query.toLowerCase())
+  );
+};
 console.log(contacts);
 logContacts(contacts);
 contacts = addContact(contacts, {
@@ -47,15 +76,21 @@ contacts = addContact(contacts, {
   jobTitle: "The flash",
   email: "barry.allen@theflash.com",
   phoneNumber: "+1278128319",
-  location: "Gotham",
+  location: "Central City",
 });
 
 console.log(contacts);
-listContact(contacts);
+logContacts(contacts);
 
 contacts = updateContact(contacts, {
   id: 2,
   phoneNumber: "+34-999-888-777",
 });
 
-listContact(contacts);
+logContacts(contacts);
+
+contacts = deleteContact(contacts, 1);
+console.log(contacts);
+const searchResult = searchContacts(contacts, "jud");
+console.log(searchResult);
+logContacts(searchResult);
