@@ -28,15 +28,8 @@ const logContacts = (contacts) => {
     return;
   }
   contacts.forEach((contact) => {
-    console.log(
-      contact.firstName +
-      " " +
-      contact.lastName +
-      ", " +
-      contact.phoneNumber +
-      ", " +
-      contact.email,
-    );
+    const fullName = `${contact.firstName} ${contact.lastName}`;
+    console.log(`${fullName} | ${contact.jobTitle} | ${contact.phoneNumber} | ${contact.email}`);
   });
 };
 
