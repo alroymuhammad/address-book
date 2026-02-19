@@ -1,23 +1,25 @@
 "use strict";
 
-let contacts = [{
-  id: 1,
-  firstName: "Steve",
-  lastName: "Jobs",
-  jobTitle: "CEO",
-  email: "stevejobs@apple.com",
-  phoneNumber: "+1278128318",
-  location: "San Francisco",
-},
-{
-  id: 2,
-  firstName: "Jude",
-  lastName: "Bellingham",
-  jobTitle: "Midfielder",
-  email: "jude.bellingham@realmadrid.com",
-  phoneNumber: "+1278128319",
-  location: "Madrid",
-},]
+let contacts = [
+  {
+    id: 1,
+    firstName: "Steve",
+    lastName: "Jobs",
+    jobTitle: "CEO",
+    email: "stevejobs@apple.com",
+    phoneNumber: "+1278128318",
+    location: "San Francisco",
+  },
+  {
+    id: 2,
+    firstName: "Jude",
+    lastName: "Bellingham",
+    jobTitle: "Midfielder",
+    email: "jude.bellingham@realmadrid.com",
+    phoneNumber: "+1278128319",
+    location: "Madrid",
+  },
+];
 
 const logContacts = (contacts) => {
   if (!Array.isArray(contacts)) {
@@ -29,7 +31,9 @@ const logContacts = (contacts) => {
   }
   contacts.forEach((contact) => {
     const fullName = `${contact.firstName} ${contact.lastName}`;
-    console.log(`${fullName} | ${contact.jobTitle} | ${contact.phoneNumber} | ${contact.email}`);
+    console.log(
+      `${fullName} | ${contact.jobTitle} | ${contact.phoneNumber} | ${contact.email}`,
+    );
   });
 };
 
@@ -51,13 +55,14 @@ const updateContact = (contacts, updatedContact) => {
 };
 
 const deleteContact = (contacts, id) => {
-  return contacts.filter(contact => contact.id !== id);
+  return contacts.filter((contact) => contact.id !== id);
 };
 
 const searchContacts = (contacts, query) => {
-  return contacts.filter(contact =>
-    contact.firstName.toLowerCase().includes(query.toLowerCase()) ||
-    contact.lastName.toLowerCase().includes(query.toLowerCase())
+  return contacts.filter(
+    (contact) =>
+      contact.firstName.toLowerCase().includes(query.toLowerCase()) ||
+      contact.lastName.toLowerCase().includes(query.toLowerCase()),
   );
 };
 console.log(contacts);
