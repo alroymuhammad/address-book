@@ -45,12 +45,35 @@ const logContacts = (contacts) => {
     );
   });
 };
+const isValidContact = (contact) => {
+  return REQUIRED_FIELDS.every(
+    (field) => Object.keys(contact).includes(field) && contact[field] !== "",
+  );
+};
 const getNextId = (contacts) => {
   if (contacts.length === 0) return 1;
   return Math.max(...contacts.map((contact) => contact.id)) + 1;
 };
-const addContact = (contacts, updatedContact) => {
-  return [...contacts, updatedContact];
+const addContact = (contacts, newContact) => {
+  if (!isValidContact(newContact)) {
+    console.log(
+      "❌ Invalid contact — missing required fields:",
+      REQUIRED_FIELDS,
+    );
+    return contacts;
+  }
+  return [
+    ...contacts,
+    {
+      ...newContact,
+      id: getNextId(contacts),
+      createdAt: new Date().toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+    },
+  ];
 };
 
 const updateContact = (contacts, updatedContact) => {
@@ -113,3 +136,14 @@ console.log(contacts);
 const searchResult = searchContacts(contacts, "jud");
 console.log(searchResult);
 logContacts(searchResult);
+contacts = addContact(contacts, {
+  id: getNextId(contacts),
+  firstName: "Diana",
+  lastName: "Prince",
+  jobTitle: "Wonder Woman",
+  email: "diana.prince@themyscira.com",
+  phoneNumber: "+1278128321",
+  location: "Themyscira",
+});
+
+console.log(contacts);
