@@ -1,5 +1,14 @@
 "use strict";
 
+const REQUIRED_FIELDS = [
+  "firstName",
+  "lastName",
+  "jobTitle",
+  "email",
+  "phoneNumber",
+  "location",
+];
+
 let contacts = [
   {
     id: 1,
@@ -36,7 +45,10 @@ const logContacts = (contacts) => {
     );
   });
 };
-
+const getNextId = (contacts) => {
+  if (contacts.length === 0) return 1;
+  return Math.max(...contacts.map((contact) => contact.id)) + 1;
+};
 const addContact = (contacts, updatedContact) => {
   return [...contacts, updatedContact];
 };
@@ -68,13 +80,22 @@ const searchContacts = (contacts, query) => {
 console.log(contacts);
 logContacts(contacts);
 contacts = addContact(contacts, {
-  id: 3,
+  id: getNextId(contacts),
   firstName: "Barry",
   lastName: "Allen",
   jobTitle: "The flash",
   email: "barry.allen@theflash.com",
   phoneNumber: "+1278128319",
   location: "Central City",
+});
+contacts = addContact(contacts, {
+  id: getNextId(contacts),
+  firstName: "Bruce",
+  lastName: "Wayne",
+  jobTitle: "The Batman",
+  email: "bruce.wayne@enterprise.com",
+  phoneNumber: "+1278128319",
+  location: "Gotham City",
 });
 
 console.log(contacts);
