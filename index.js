@@ -168,4 +168,4 @@ contacts = addContact(contacts, {
 saveContacts(contacts);
 
 console.log(contacts);
-console.log(fetchContactsFromAPI());
+fetchContactsFromAPI();
