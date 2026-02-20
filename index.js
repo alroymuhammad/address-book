@@ -1,4 +1,5 @@
 "use strict";
+const API_URL = "https://6995d3a3b081bc23e9c492b5.mockapi.io/api/contacts";
 
 const REQUIRED_FIELDS = [
   "firstName",
@@ -38,7 +39,17 @@ const loadContacts = () => {
   const stored = localStorage.getItem("contacts");
   return stored ? JSON.parse(stored) : defaultContacts;
 };
-
+const fetchContactsFromAPI = async () => {
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+    console.log("✅ Loaded from API:", data);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};
 const logContacts = (contacts) => {
   if (!Array.isArray(contacts)) {
     console.log("Provide an array of objects data structure");
@@ -157,3 +168,4 @@ contacts = addContact(contacts, {
 saveContacts(contacts);
 
 console.log(contacts);
+console.log(fetchContactsFromAPI());
