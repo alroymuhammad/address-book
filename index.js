@@ -9,7 +9,7 @@ const REQUIRED_FIELDS = [
   "location",
 ];
 
-let contacts = [
+const defaultContacts = [
   {
     id: 1,
     firstName: "Steve",
@@ -30,6 +30,15 @@ let contacts = [
   },
 ];
 
+const saveContacts = (contacts) => {
+  localStorage.setItem("contacts", JSON.stringify(contacts));
+};
+
+const loadContacts = () => {
+  const stored = localStorage.getItem("contacts");
+  return stored ? JSON.parse(stored) : defaultContacts;
+};
+
 const logContacts = (contacts) => {
   if (!Array.isArray(contacts)) {
     console.log("Provide an array of objects data structure");
@@ -45,21 +54,21 @@ const logContacts = (contacts) => {
     );
   });
 };
+
 const isValidContact = (contact) => {
   return REQUIRED_FIELDS.every(
     (field) => Object.keys(contact).includes(field) && contact[field] !== "",
   );
 };
+
 const getNextId = (contacts) => {
   if (contacts.length === 0) return 1;
   return Math.max(...contacts.map((contact) => contact.id)) + 1;
 };
+
 const addContact = (contacts, newContact) => {
   if (!isValidContact(newContact)) {
-    console.log(
-      "❌ Invalid contact — missing required fields:",
-      REQUIRED_FIELDS,
-    );
+    console.log("Invalid contact — missing required fields:", REQUIRED_FIELDS);
     return contacts;
   }
   return [
@@ -79,10 +88,7 @@ const addContact = (contacts, newContact) => {
 const updateContact = (contacts, updatedContact) => {
   return contacts.map((contact) => {
     if (contact.id === updatedContact.id) {
-      return {
-        ...contact,
-        ...updatedContact,
-      };
+      return { ...contact, ...updatedContact };
     } else {
       return contact;
     }
@@ -100,19 +106,19 @@ const searchContacts = (contacts, query) => {
       contact.lastName.toLowerCase().includes(query.toLowerCase()),
   );
 };
-console.log(contacts);
-logContacts(contacts);
+let contacts = loadContacts();
+
 contacts = addContact(contacts, {
-  id: getNextId(contacts),
   firstName: "Barry",
   lastName: "Allen",
-  jobTitle: "The flash",
+  jobTitle: "The Flash",
   email: "barry.allen@theflash.com",
   phoneNumber: "+1278128319",
   location: "Central City",
 });
+saveContacts(contacts);
+
 contacts = addContact(contacts, {
-  id: getNextId(contacts),
   firstName: "Bruce",
   lastName: "Wayne",
   jobTitle: "The Batman",
@@ -120,24 +126,27 @@ contacts = addContact(contacts, {
   phoneNumber: "+1278128319",
   location: "Gotham City",
 });
-
-console.log(contacts);
+saveContacts(contacts);
 logContacts(contacts);
 
 contacts = updateContact(contacts, {
   id: 2,
   phoneNumber: "+34-999-888-777",
 });
-
+saveContacts(contacts);
 logContacts(contacts);
 
 contacts = deleteContact(contacts, 1);
-console.log(contacts);
+saveContacts(contacts);
+
 const searchResult = searchContacts(contacts, "jud");
-console.log(searchResult);
 logContacts(searchResult);
 contacts = addContact(contacts, {
-  id: getNextId(contacts),
+  firstName: "Invalid",
+  lastName: "",
+});
+
+contacts = addContact(contacts, {
   firstName: "Diana",
   lastName: "Prince",
   jobTitle: "Wonder Woman",
@@ -145,5 +154,6 @@ contacts = addContact(contacts, {
   phoneNumber: "+1278128321",
   location: "Themyscira",
 });
+saveContacts(contacts);
 
 console.log(contacts);
