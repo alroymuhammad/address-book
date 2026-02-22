@@ -31,6 +31,7 @@ const defaultContacts = [
   },
 ];
 
+// TODO: modularize the files
 const saveContacts = (contacts) => {
   localStorage.setItem("contacts", JSON.stringify(contacts));
 };
