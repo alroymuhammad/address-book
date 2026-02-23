@@ -118,55 +118,40 @@ const searchContacts = (contacts, query) => {
       contact.lastName.toLowerCase().includes(query.toLowerCase()),
   );
 };
+const containerElement = document.getElementById("container");
+const formElement = document.getElementById("search");
+const inputElement = document.getElementById("search-input");
+const listElement = document.getElementById("contacts-list");
+
+const renderList = (contactsList) => {
+  listElement.innerHTML = "";
+
+  if (!Array.isArray(contactsList) || contactsList.length === 0) {
+    const li = document.createElement("li");
+    li.textContent = "No results.";
+    listElement.appendChild(li);
+    return;
+  }
+
+  contactsList.forEach((contact) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <div class="font-semibold">${contact.firstName} ${contact.lastName}</div>
+      <div class="text-sm">${contact.jobTitle}</div>
+      <div class="text-sm">${contact.email}</div>
+      <div class="text-sm">${contact.phoneNumber}</div>
+      <div class="text-sm">${contact.location}</div>
+    `;
+
+    listElement.appendChild(li);
+  });
+};
 let contacts = loadContacts();
-
-contacts = addContact(contacts, {
-  firstName: "Barry",
-  lastName: "Allen",
-  jobTitle: "The Flash",
-  email: "barry.allen@theflash.com",
-  phoneNumber: "+1278128319",
-  location: "Central City",
-});
-saveContacts(contacts);
-
-contacts = addContact(contacts, {
-  firstName: "Bruce",
-  lastName: "Wayne",
-  jobTitle: "The Batman",
-  email: "bruce.wayne@enterprise.com",
-  phoneNumber: "+1278128319",
-  location: "Gotham City",
-});
-saveContacts(contacts);
-logContacts(contacts);
-
-contacts = updateContact(contacts, {
-  id: 2,
-  phoneNumber: "+34-999-888-777",
-});
-saveContacts(contacts);
-logContacts(contacts);
-
-contacts = deleteContact(contacts, 1);
-saveContacts(contacts);
-
-const searchResult = searchContacts(contacts, "jud");
-logContacts(searchResult);
-contacts = addContact(contacts, {
-  firstName: "Invalid",
-  lastName: "",
-});
-
-contacts = addContact(contacts, {
-  firstName: "Diana",
-  lastName: "Prince",
-  jobTitle: "Wonder Woman",
-  email: "diana.prince@themyscira.com",
-  phoneNumber: "+1278128321",
-  location: "Themyscira",
-});
-saveContacts(contacts);
-
-console.log(contacts);
 fetchContactsFromAPI();
+renderList(contacts);
+formElement.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const query = inputElement.value;
+  const results = searchContacts(contacts, query);
+  renderList(results);
+});
