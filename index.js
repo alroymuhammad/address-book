@@ -136,12 +136,26 @@ const renderList = (contactsList) => {
   contactsList.forEach((contact) => {
     const li = document.createElement("li");
     li.innerHTML = `
-      <div class="font-semibold">${contact.firstName} ${contact.lastName}</div>
-      <div class="text-sm">${contact.jobTitle}</div>
-      <div class="text-sm">${contact.email}</div>
-      <div class="text-sm">${contact.phoneNumber}</div>
-      <div class="text-sm">${contact.location}</div>
-    `;
+    <div class="font-semibold">${contact.firstName} ${contact.lastName}</div>
+    <div class="text-sm">${contact.jobTitle}</div>
+    <div class="text-sm">${contact.email}</div>
+    <div class="text-sm">${contact.phoneNumber}</div>
+    <div class="text-sm">${contact.location}</div>
+    <button class="edit-btn">Edit</button>
+    <button class="delete-btn">Delete</button>
+  `;
+
+    // Attach listeners AFTER innerHTML is set
+    li.querySelector(".delete-btn").addEventListener("click", () => {
+      contacts = deleteContact(contacts, contact.id);
+      saveContacts(contacts);
+      renderList(contacts);
+    });
+
+    li.querySelector(".edit-btn").addEventListener("click", () => {
+      console.log("Edit:", contact);
+      // your edit logic here
+    });
 
     listElement.appendChild(li);
   });
