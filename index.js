@@ -10,6 +10,7 @@ import {
 } from "./contact.js";
 
 const formElement = document.getElementById("search");
+// TODO: prefer to use event.target inside search form submit handler
 const inputElement = document.getElementById("search-input");
 const listElement = document.getElementById("contacts-list");
 const contactFormElement = document.getElementById("contact-form");
@@ -17,6 +18,7 @@ const contactFormElement = document.getElementById("contact-form");
 const renderList = (contactsList) => {
   listElement.innerHTML = "";
 
+  // TODO: no need to check isArray() if you're not gonna pass non-array anw
   if (!Array.isArray(contactsList) || contactsList.length === 0) {
     const li = document.createElement("li");
     li.textContent = "No results.";
@@ -26,6 +28,7 @@ const renderList = (contactsList) => {
 
   contactsList.forEach((contact) => {
     const li = document.createElement("li");
+    // TODO: create a renderContact function to simplify this one
     li.innerHTML = `
     <div class="border border-gray-300 rounded p-4 my-2 max-w-sm">
       <div class="font-semibold text-lg">${contact.firstName} ${contact.lastName}</div>
@@ -36,6 +39,7 @@ const renderList = (contactsList) => {
       <button class="delete-btn mx-1 px-3 py-1 border border-red-500 text-red-500 rounded hover:bg-red-50">Delete</button>
     </div>
   `;
+    // TODO: move out function handler
     li.querySelector(".delete-btn").addEventListener("click", () => {
       contacts = deleteContact(contacts, contact.id);
       saveContacts(contacts);
@@ -60,6 +64,7 @@ formElement.addEventListener("submit", (event) => {
 contactFormElement.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(contactFormElement);
+  // TODO: try out dynamically getting data from form using Object.entries(formData.entries())
   const newContact = {
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
