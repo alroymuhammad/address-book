@@ -27,22 +27,19 @@ const renderList = (contactsList) => {
   contactsList.forEach((contact) => {
     const li = document.createElement("li");
     li.innerHTML = `
-    <div class="font-semibold">${contact.firstName} ${contact.lastName}</div>
-    <div class="text-sm">${contact.jobTitle}</div>
-    <div class="text-sm">${contact.email}</div>
-    <div class="text-sm">${contact.phoneNumber}</div>
-    <div class="text-sm">${contact.location}</div>
-    <button class="edit-btn">Edit</button>
-    <button class="delete-btn">Delete</button>
+    <div class="border border-gray-300 rounded p-4 my-2 max-w-sm">
+      <div class="font-semibold text-lg">${contact.firstName} ${contact.lastName}</div>
+      <div class="text-sm text-gray-600">${contact.jobTitle}</div>
+      <div class="text-sm text-gray-600">${contact.email}</div>
+      <div class="text-sm text-gray-600">${contact.phoneNumber}</div>
+      <div class="text-sm text-gray-600 mb-3">${contact.location}</div>
+      <button class="delete-btn mx-1 px-3 py-1 border border-red-500 text-red-500 rounded hover:bg-red-50">Delete</button>
+    </div>
   `;
     li.querySelector(".delete-btn").addEventListener("click", () => {
       contacts = deleteContact(contacts, contact.id);
       saveContacts(contacts);
       renderList(contacts);
-    });
-
-    li.querySelector(".edit-btn").addEventListener("click", () => {
-      console.log("Edit:", contact);
     });
 
     listElement.appendChild(li);
