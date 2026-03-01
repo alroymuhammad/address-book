@@ -15,11 +15,17 @@
         name="search"
         id="search-input"
         placeholder="Enter name"
+        class="mx-2 border border-gray-400 rounded px-2 py-1"
       />
-      <button>Search</button>
+      <button class="mx-2 px-4 py-1 border border-gray-600 rounded">
+        Search
+      </button>
     </form>
-    <form id="contact-form">
-      <div>
+    <form
+      id="contact-form"
+      class="mt-4 border border-gray-300 rounded p-4 my-2 max-w-sm"
+    >
+      <div class="my-2">
         <label for="first-name">First Name</label>
         <input
           type="text"
@@ -27,9 +33,10 @@
           name="firstName"
           placeholder="Input first name"
           required
+          class="mx-2 border border-gray-400 rounded px-2 py-1"
         />
       </div>
-      <div>
+      <div class="my-2">
         <label for="last-name">Last Name</label>
         <input
           type="text"
@@ -37,9 +44,10 @@
           name="lastName"
           placeholder="Input last name"
           required
+          class="mx-2 border border-gray-400 rounded px-2 py-1"
         />
       </div>
-      <div>
+      <div class="my-2">
         <label for="job-title">Job Title</label>
         <input
           type="text"
@@ -47,9 +55,10 @@
           name="jobTitle"
           placeholder="Input job title"
           required
+          class="mx-2 border border-gray-400 rounded px-2 py-1"
         />
       </div>
-      <div>
+      <div class="my-2">
         <label for="email">Email</label>
         <input
           type="email"
@@ -57,9 +66,10 @@
           name="email"
           placeholder="Input email"
           required
+          class="mx-2 border border-gray-400 rounded px-2 py-1"
         />
       </div>
-      <div>
+      <div class="my-2">
         <label for="phone-number">Phone Number</label>
         <input
           type="tel"
@@ -67,9 +77,10 @@
           name="phoneNumber"
           placeholder="Input phone number"
           required
+          class="mx-2 border border-gray-400 rounded px-2 py-1"
         />
       </div>
-      <div>
+      <div class="my-2">
         <label for="location">Location</label>
         <input
           type="text"
@@ -77,9 +88,15 @@
           name="location"
           placeholder="Input location"
           required
+          class="mx-2 border border-gray-400 rounded px-2 py-1"
         />
       </div>
-      <button type="submit">Add Contact</button>
+      <button
+        type="submit"
+        class="mt-2 mx-2 px-4 py-1 border border-gray-600 rounded"
+      >
+        Add Contact
+      </button>
     </form>
 
     <div id="container">
@@ -88,4 +105,3 @@
     <script type="module" src="index.js"></script>
   </body>
 </html>
-b
