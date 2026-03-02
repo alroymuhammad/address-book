@@ -21,3 +21,4 @@ The goal of this project is not only to practice building CRUD-based contact man
 ![System's Flowchart](docs/images/system_flow.png)
 
 ## How to Run It
+Execute the index.html or start with live server
