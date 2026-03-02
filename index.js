@@ -27,9 +27,8 @@ const renderList = (contactsList) => {
     return;
   }
 
-  contactsList.forEach((contact) => {
+  const renderContact = (contact) => {
     const li = document.createElement("li");
-    // TODO: create a renderContact function to simplify this one
     li.innerHTML = `
     <div class="bg-white rounded-2xl shadow-md p-4 my-2 max-w-sm">
       <div class="font-semibold text-lg">${contact.firstName} ${contact.lastName}</div>
@@ -41,8 +40,11 @@ const renderList = (contactsList) => {
     </div>
   `;
     li.querySelector(".delete-btn").addEventListener("click", deleteContact);
+    return li;
+  };
 
-    listElement.appendChild(li);
+  contactsList.forEach((contact) => {
+    listElement.appendChild(renderContact(li));
   });
 };
 
@@ -60,7 +62,6 @@ formElement.addEventListener("submit", (event) => {
 contactFormElement.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(contactFormElement);
-  // TODO: try out dynamically getting data from form using Object.entries(formData.entries())
   const newContact = Object.fromEntries(formData.entries());
   contacts = addContact(contacts, newContact);
   saveContacts(contacts);
