@@ -61,14 +61,7 @@ contactFormElement.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(contactFormElement);
   // TODO: try out dynamically getting data from form using Object.entries(formData.entries())
-  const newContact = {
-    firstName: formData.get("firstName"),
-    lastName: formData.get("lastName"),
-    jobTitle: formData.get("jobTitle"),
-    email: formData.get("email"),
-    phoneNumber: formData.get("phoneNumber"),
-    location: formData.get("location"),
-  };
+  const newContact = Object.fromEntries(formData.entries());
   contacts = addContact(contacts, newContact);
   saveContacts(contacts);
   renderList(contacts);
