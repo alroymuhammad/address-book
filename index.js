@@ -10,8 +10,6 @@ import {
 } from "./contact.js";
 
 const formElement = document.getElementById("search");
-// TODO: prefer to use event.target inside search form submit handler
-const inputElement = document.getElementById("search-input");
 const listElement = document.getElementById("contacts-list");
 const contactFormElement = document.getElementById("contact-form");
 
@@ -30,7 +28,7 @@ const renderList = (contactsList) => {
     const li = document.createElement("li");
     // TODO: create a renderContact function to simplify this one
     li.innerHTML = `
-    <div class="border border-gray-300 rounded p-4 my-2 max-w-sm">
+    <div class="bg-white rounded-2xl shadow-md p-4 my-2 max-w-sm">
       <div class="font-semibold text-lg">${contact.firstName} ${contact.lastName}</div>
       <div class="text-sm text-gray-600">${contact.jobTitle}</div>
       <div class="text-sm text-gray-600">${contact.email}</div>
@@ -56,7 +54,7 @@ renderList(contacts);
 
 formElement.addEventListener("submit", (event) => {
   event.preventDefault();
-  const query = inputElement.value;
+  const query = event.target.search.value;
   const results = searchContacts(contacts, query);
   renderList(results);
 });
