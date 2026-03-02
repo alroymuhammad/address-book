@@ -1,5 +1,3 @@
-"use strict";
-
 import {
   loadContacts,
   saveContacts,
@@ -13,11 +11,16 @@ const formElement = document.getElementById("search");
 const listElement = document.getElementById("contacts-list");
 const contactFormElement = document.getElementById("contact-form");
 
+const deleteContact = () => {
+  contacts = deleteContact(contacts, contact.id);
+  saveContacts(contacts);
+  renderList(contacts);
+};
+
 const renderList = (contactsList) => {
   listElement.innerHTML = "";
 
-  // TODO: no need to check isArray() if you're not gonna pass non-array anw
-  if (!Array.isArray(contactsList) || contactsList.length === 0) {
+  if (contactsList.length === 0) {
     const li = document.createElement("li");
     li.textContent = "No results.";
     listElement.appendChild(li);
@@ -37,12 +40,7 @@ const renderList = (contactsList) => {
       <button class="delete-btn mx-1 px-3 py-1 border border-red-500 text-red-500 rounded hover:bg-red-50">Delete</button>
     </div>
   `;
-    // TODO: move out function handler
-    li.querySelector(".delete-btn").addEventListener("click", () => {
-      contacts = deleteContact(contacts, contact.id);
-      saveContacts(contacts);
-      renderList(contacts);
-    });
+    li.querySelector(".delete-btn").addEventListener("click", deleteContact);
 
     listElement.appendChild(li);
   });
