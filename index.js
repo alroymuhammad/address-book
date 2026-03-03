@@ -11,7 +11,7 @@ const formElement = document.getElementById("search");
 const listElement = document.getElementById("contacts-list");
 const contactFormElement = document.getElementById("contact-form");
 
-const deleteContact = () => {
+const handleDeleteContact = () => {
   contacts = deleteContact(contacts, contact.id);
   saveContacts(contacts);
   renderList(contacts);
@@ -39,12 +39,15 @@ const renderList = (contactsList) => {
       <button class="delete-btn mx-1 px-3 py-1 border border-red-500 text-red-500 rounded hover:bg-red-50">Delete</button>
     </div>
   `;
-    li.querySelector(".delete-btn").addEventListener("click", deleteContact);
+    li.querySelector(".delete-btn").addEventListener(
+      "click",
+      handleDeleteContact,
+    );
     return li;
   };
 
   contactsList.forEach((contact) => {
-    listElement.appendChild(renderContact(li));
+    listElement.appendChild(renderContact(contact));
   });
 };
 
