@@ -11,7 +11,7 @@ const formElement = document.getElementById("search");
 const listElement = document.getElementById("contacts-list");
 const contactFormElement = document.getElementById("contact-form");
 
-const handleDeleteContact = () => {
+const handleDeleteContact = (contact) => () => {
   contacts = deleteContact(contacts, contact.id);
   saveContacts(contacts);
   renderList(contacts);
@@ -41,7 +41,7 @@ const renderList = (contactsList) => {
   `;
     li.querySelector(".delete-btn").addEventListener(
       "click",
-      handleDeleteContact,
+      handleDeleteContact(contact),
     );
     return li;
   };
